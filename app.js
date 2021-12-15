@@ -1,8 +1,12 @@
-// import functions and grab DOM elements
+import { fetchPlanets } from './fetch-utils.js';
+import { renderPlanetCard } from './render-utils.js';
 
-// let state
+const listContainer = document.getElementById('list-container');
 
-// set event listeners 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
+window.addEventListener('load', async() => {
+    const planets = await fetchPlanets();
+    for (let planet of planets) {
+        const planetEl = renderPlanetCard(planet);
+        listContainer.append(planetEl);
+    }
+});
